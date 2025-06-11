@@ -1,5 +1,6 @@
 import pytest
 from playwright.sync_api import sync_playwright
+#setup and teardown
 
 @pytest.fixture(scope="session")
 def playwright_instance():
