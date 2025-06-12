@@ -8,7 +8,7 @@ def test_login(page):
     page.locator("[data-test=\"password\"]").fill("secret_sauce")
     page.locator("[data-test=\"login-button\"]").click()
     expect(page).to_have_url("https://www.saucedemo.com/inventory.html")
-    print("Login successful and redirected to inventory page")
+    print("Login successful and redirected to inventory page.")
 
 def test_failed_login(page):
     page.goto("https://www.saucedemo.com/")
@@ -19,7 +19,7 @@ def test_failed_login(page):
     error_message = page.locator("[data-test='error']")
     expect(error_message).to_be_visible()
     expect(error_message).to_have_text("Epic sadface: Username and password do not match any user in this service")
-    print("Login was unsuccessful and wasn't redirected to inventory page")
+    print("Login was unsuccessful and wasn't redirected to inventory page.")
 
 def test_empty_user_name(page):
     page.goto("https://www.saucedemo.com/")
@@ -29,7 +29,7 @@ def test_empty_user_name(page):
     expect(error_message).to_be_visible()
     expect(error_message).to_have_text("Epic sadface: Username is required")
     expect(page).to_have_url("https://www.saucedemo.com/")
-    print("Login was unsuccessful and wasn't redirected to inventory page")
+    print("Login was unsuccessful and wasn't redirected to inventory page.")
 
 def test_empty_password(page):
     page.goto("https://www.saucedemo.com/")
@@ -39,4 +39,13 @@ def test_empty_password(page):
     expect(error_message).to_be_visible()
     expect(error_message).to_have_text("Epic sadface: Password is required")
     expect(page).to_have_url("https://www.saucedemo.com/")
-    print("Login was unsuccessful and wasn't redirected to inventory page")
+    print("Login was unsuccessful and wasn't redirected to inventory page.")
+
+def test_empty_login(page):
+    page.goto("https://www.saucedemo.com/")
+    page.locator("[data-test=\"login-button\"]").click()
+    error_message = page.locator("[data-test=\"error\"]")
+    expect(error_message).to_be_visible()
+    expect(error_message).to_have_text("Epic sadface: Username is required")
+    expect(page).to_have_url("https://www.saucedemo.com/")
+    print("Login was unsuccessful and wasn't redirected.")
