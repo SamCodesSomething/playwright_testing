@@ -49,3 +49,14 @@ def test_empty_login(page):
     expect(error_message).to_have_text("Epic sadface: Username is required")
     expect(page).to_have_url("https://www.saucedemo.com/")
     print("Login was unsuccessful and wasn't redirected.")
+
+def test_locked_out_user(page):
+    page.goto("https://www.saucedemo.com/")
+    page.locator("[data-test=\"username\"]").fill("locked_out_user")
+    page.locator("[data-test=\"password\"]").fill("secret_sauce")
+    page.locator("[data-test=\"login-button\"]").click()
+    error_message = page.locator("[data-test=\"error\"]")
+    expect(error_message).to_be_visible()
+    expect(error_message).to_have_text("Epic sadface: Sorry, this user has been locked out.")
+    expect(page).to_have_url("https://www.saucedemo.com/")
+    print("Login was unsuccessful for locked out user.")
