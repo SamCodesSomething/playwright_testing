@@ -20,7 +20,7 @@ def test_failed_login(page):
     expect(page).to_have_url("https://www.saucedemo.com/")
     error_message = page.locator("[data-test='error']")
     expect(error_message).to_be_visible()
-    expect(error_message).to_have_text("Epic sadface: Username and password do not match a ny user in this service")
+    expect(error_message).to_have_text("Epic sadface: Username and password do not match any user in this service")
     print("Login was unsuccessful and wasn't redirected to inventory page.")
 
 #testing failed login with an empty username
